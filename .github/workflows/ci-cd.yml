@@ -71,3 +71,35 @@ jobs:
         context: ./reservation-service
         push: false
         tags: reservation-service:latest
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Heroku
+      uses: akshnz/heroku-cli-action@v1
+      with:
+        api_key: ${{ secrets.HEROKU_API_KEY }}
+
+    - name: Login to Render
+      run: |
+        curl -fsSL https://render.com/deploy/script.sh | bash
+        render login --api-key ${{ secrets.dep }}  # Use the 'dep' secret for Render API key
+
+    - name: Deploy User Service to Render
+      run: |
+        render container:push web --service user-service --env production
+        render container:release web --service user-service --env production
+
+    - name: Deploy Room Service to Render
+      run: |
+        render container:push web --service room-service --env production
+        render container:release web --service room-service --env production
+
+    - name: Deploy Reservation Service to Render
+      run: |
+        render container:push web --service reservation-service --env production
+        render container:release web --service reservation-service --env production
