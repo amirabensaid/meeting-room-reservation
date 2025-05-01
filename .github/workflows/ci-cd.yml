@@ -1,0 +1,73 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.9'
+
+    - name: Install and test User Service
+      run: |
+        cd user-service
+        pip install -r requirements.txt
+        pip install pytest
+        pytest tests/
+
+    - name: Install and test Room Service
+      run: |
+        cd room-service
+        pip install -r requirements.txt
+        pip install pytest
+        pytest tests/
+
+    - name: Install and test Reservation Service
+      run: |
+        cd reservation-service
+        pip install -r requirements.txt
+        pip install pytest
+        pytest tests/
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
+
+    - name: Build User Service
+      uses: docker/build-push-action@v2
+      with:
+        context: ./user-service
+        push: false
+        tags: user-service:latest
+
+    - name: Build Room Service
+      uses: docker/build-push-action@v2
+      with:
+        context: ./room-service
+        push: false
+        tags: room-service:latest
+
+    - name: Build Reservation Service
+      uses: docker/build-push-action@v2
+      with:
+        context: ./reservation-service
+        push: false
+        tags: reservation-service:latest

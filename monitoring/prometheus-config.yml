@@ -1,0 +1,7 @@
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: 'meeting-room-api'
+    static_configs:
+      - targets: ['user-service:5000', 'room-service:5001', 'reservation-service:5002']

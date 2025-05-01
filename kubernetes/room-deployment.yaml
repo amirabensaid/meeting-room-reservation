@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: room-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: room-service
+  template:
+    metadata:
+      labels:
+        app: room-service
+    spec:
+      containers:
+      - name: room-service
+        image: localhost:5000/room-service:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 5001
+        env:
+        - name: JWT_SECRET_KEY
+          value: "shared-jwt-secret-for-development-only"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: room-service
+spec:
+  selector:
+    app: room-service
+  ports:
+  - port: 5001
+    targetPort: 5001
+  type: ClusterIP

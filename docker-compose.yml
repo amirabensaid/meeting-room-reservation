@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  user-service:
+    build: 
+      context: ./user-service
+    ports:
+      - "5000:5000"
+    environment:
+      - JWT_SECRET_KEY=shared-jwt-secret-for-development-only
+    networks:
+      - reservation-network
+    restart: always
+
+  room-service:
+    build: 
+      context: ./room-service
+    ports:
+      - "5001:5001"
+    environment:
+      - JWT_SECRET_KEY=shared-jwt-secret-for-development-only
+    networks:
+      - reservation-network
+    restart: always
+
+  reservation-service:
+    build: 
+      context: ./reservation-service
+    ports:
+      - "5002:5002"
+    environment:
+      - JWT_SECRET_KEY=shared-jwt-secret-for-development-only
+    networks:
+      - reservation-network
+    restart: always
+
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus-config.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - reservation-network
+    restart: always
+
+
+networks:
+  reservation-network:
+    driver: bridge

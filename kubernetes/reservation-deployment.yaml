@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reservation-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: reservation-service
+  template:
+    metadata:
+      labels:
+        app: reservation-service
+    spec:
+      containers:
+      - name: reservation-service
+        image: localhost:5000/reservation-service:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 5002
+        env:
+        - name: JWT_SECRET_KEY
+          value: "shared-jwt-secret-for-development-only"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: reservation-service
+spec:
+  selector:
+    app: reservation-service
+  ports:
+  - port: 5002
+    targetPort: 5002
+  type: ClusterIP

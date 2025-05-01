@@ -1,0 +1,7 @@
+werkzeug==2.0.3
+flask==2.0.3
+flask-restful==0.3.9
+flask-jwt-extended==4.2.3
+psycopg2-binary==2.9.1
+prometheus_flask_exporter
+requests==2.28.1  # or whatever version you're using
