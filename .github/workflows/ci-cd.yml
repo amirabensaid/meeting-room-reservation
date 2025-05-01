@@ -19,6 +19,9 @@ jobs:
       with:
         python-version: '3.9'
 
+    - name: Set PYTHONPATH
+      run: echo "PYTHONPATH=$(pwd)/user-service" >> $GITHUB_ENV
+
     - name: Install and test User Service
       run: |
         cd user-service
