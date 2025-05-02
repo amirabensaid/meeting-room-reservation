@@ -4,6 +4,10 @@
 This project is a microservices-based system designed to manage the reservation of meeting rooms within a company.
 Users (employees, admins, visitors) can view available rooms, make reservations, and manage their bookings easily.
 Authentication is handled through OAuth login (e.g., Google Sign-In), ensuring secure and simple access.
+Figma Template : 
+https://www.figma.com/design/ekCsGVCh0N0NoAq0x1WHy0/Meeting-Room--Community-?node-id=0-1&t=NJbjaqBdkk6wSAHC-1
+![Uploading image.png…]()
+
 
 The system is built around three key microservices (user-service, salle-service, reservation-service) communicating through Kafka and REST APIs, with PostgreSQL databases for storage.
 🚀 How to Run the Project
@@ -36,9 +40,8 @@ Run each microservice
 
     Access the application
 
-        APIs are available locally (e.g., http://localhost:3000, etc.).
+        APIs are available locally (e.g., http://localhost:5000,5001,5002 etc.).
 
-        Frontend (if included) can consume these APIs for a complete experience.
 
 🛠️ Services Overview
 
