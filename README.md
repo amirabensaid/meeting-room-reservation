@@ -6,7 +6,19 @@ Users (employees, admins, visitors) can view available rooms, make reservations,
 Authentication is handled through OAuth login (e.g., Google Sign-In), ensuring secure and simple access.
 Figma Template : 
 https://www.figma.com/design/ekCsGVCh0N0NoAq0x1WHy0/Meeting-Room--Community-?node-id=0-1&t=NJbjaqBdkk6wSAHC-1
-![Uploading image.png…]()
+
+![image](https://github.com/user-attachments/assets/ced3af18-a9a9-4712-9f9b-2fa10e5c207a)
+
+![image](https://github.com/user-attachments/assets/07b3437b-8eb2-4a06-bf5e-6046589d246e)
+
+![image](https://github.com/user-attachments/assets/9327536a-f9ee-4550-8688-09c033bb801d)
+
+![image](https://github.com/user-attachments/assets/d7b18f23-d04f-4378-8bde-ebb34105380a)
+
+![image](https://github.com/user-attachments/assets/38218cfc-8a53-40fc-88ce-503a0cdb85e5)
+
+![image](https://github.com/user-attachments/assets/dd586293-0b3f-409a-8e92-e4cc2fe24af8)
+
 
 
 The system is built around three key microservices (user-service, salle-service, reservation-service) communicating through Kafka and REST APIs, with PostgreSQL databases for storage.
@@ -21,12 +33,6 @@ Start Kafka and Zookeeper (for message brokering)
 You can use Docker:
 
 docker-compose up -d
-
-Start the databases
-
-    Ensure PostgreSQL is running for each service.
-
-    Apply the database migrations if necessary (SQL scripts provided per service).
 
 Run each microservice
 
