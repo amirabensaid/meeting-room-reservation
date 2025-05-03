@@ -23,13 +23,7 @@ This project is a containerized microservices-based booking system with CI/CD, m
 ```
 
 ```
-        ┌────────────────────────────┐
-        │        Ingress (Nginx)     │
-        └────────────┬───────────────┘
-                     │
- ┌───────────────────┼────────────────────┐
- │                   │                    │
-```
+
 
 ┌────▼────┐        ┌─────▼─────┐        ┌─────▼─────┐
 │ user    │        │ room      │        │ reservation│
