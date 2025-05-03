@@ -1,8 +1,4 @@
-Here’s a complete `README.md` for your microservices project, cleanly documenting **architecture, setup, CI/CD, monitoring**, and **deployment**:
 
----
-
-```markdown
 # 🧩 Microservices Booking Platform
 
 This project is a containerized microservices-based booking system with CI/CD, monitoring, and cloud deployment. It includes three main services:
